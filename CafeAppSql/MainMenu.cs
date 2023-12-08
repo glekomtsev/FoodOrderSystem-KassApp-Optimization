@@ -13,6 +13,8 @@ namespace CafeAppSql
     public partial class MainMenu : Form
     {
         private System.Windows.Forms.Timer timer;
+        private int waiterEnterId;
+
         public MainMenu()
         {
             InitializeComponent();
@@ -21,6 +23,18 @@ namespace CafeAppSql
             timer.Interval = 1000;
             timer.Tick += (sender, e) => ShowTime();
             timer.Start();
+        }
+
+        public MainMenu(int waiterId)
+        {
+            this.waiterEnterId = waiterId;
+            InitializeComponent();
+            LoadMineMenu();
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000;
+            timer.Tick += (sender, e) => ShowTime();
+            timer.Start();
+            LoadWaiterPost();
         }
 
         void LoadMineMenu()
@@ -42,6 +56,30 @@ namespace CafeAppSql
                 dataGridOrder.Columns.Add("DishCount", "Кол-во");
                 dataGridOrder.Columns[0].Visible = false;
                 dataGridOrder.Columns[1].Width = 285;
+            }
+        }
+
+        private void LoadWaiterPost()
+        {
+            using (CafeDataBaseContext context = new CafeDataBaseContext())
+            {
+                lblWaiterName.Text = context.Waiters
+                    .Where(e => e.WaiterId == waiterEnterId)
+                    .Select(e => e.WaiterLastname + " " + e.WaiterName)
+                    .FirstOrDefault()
+                    .ToString();
+
+                bool isAdmin = context.Waiters
+                 .Where(e => e.WaiterId == waiterEnterId)
+                 .Select(e => e.Post)
+                 .FirstOrDefault() ?? false;
+
+                if (isAdmin)
+                {
+                    lblWaiterPost.Text = "Администратор:";
+                }
+                else
+                    lblWaiterPost.Text = "Официант:";
             }
         }
 
@@ -160,7 +198,7 @@ namespace CafeAppSql
         {
             using (CafeDataBaseContext context = new CafeDataBaseContext())
             {
-                
+
             }
         }
 

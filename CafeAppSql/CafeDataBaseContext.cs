@@ -124,6 +124,8 @@ public partial class CafeDataBaseContext : DbContext
 
             entity.Property(e => e.WaiterId).HasColumnName("waiter_id");
             entity.Property(e => e.Description).HasColumnName("description");
+            entity.Property(e => e.Login).HasColumnName("login");
+            entity.Property(e => e.Password).HasColumnName("password");
             entity.Property(e => e.Post)
                 .HasDefaultValueSql("false")
                 .HasColumnName("post");

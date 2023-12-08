@@ -33,11 +33,9 @@
             dataGridMenu = new DataGridView();
             listBoxCategories = new ListBox();
             txtDishName = new TextBox();
-            cmbCategories = new ComboBox();
             txtDishPrice = new TextBox();
             btnChangeDish = new Button();
             label1 = new Label();
-            label2 = new Label();
             label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridMenu).BeginInit();
             SuspendLayout();
@@ -98,17 +96,9 @@
             txtDishName.Size = new Size(214, 27);
             txtDishName.TabIndex = 8;
             // 
-            // cmbCategories
-            // 
-            cmbCategories.FormattingEnabled = true;
-            cmbCategories.Location = new Point(849, 124);
-            cmbCategories.Name = "cmbCategories";
-            cmbCategories.Size = new Size(214, 28);
-            cmbCategories.TabIndex = 9;
-            // 
             // txtDishPrice
             // 
-            txtDishPrice.Location = new Point(849, 177);
+            txtDishPrice.Location = new Point(849, 137);
             txtDishPrice.Name = "txtDishPrice";
             txtDishPrice.Size = new Size(214, 27);
             txtDishPrice.TabIndex = 10;
@@ -116,7 +106,7 @@
             // btnChangeDish
             // 
             btnChangeDish.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnChangeDish.Location = new Point(711, 227);
+            btnChangeDish.Location = new Point(711, 200);
             btnChangeDish.Name = "btnChangeDish";
             btnChangeDish.Size = new Size(352, 65);
             btnChangeDish.TabIndex = 11;
@@ -134,21 +124,11 @@
             label1.TabIndex = 12;
             label1.Text = "Название";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(711, 120);
-            label2.Name = "label2";
-            label2.Size = new Size(106, 28);
-            label2.TabIndex = 12;
-            label2.Text = "Категория";
-            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(711, 173);
+            label3.Location = new Point(711, 133);
             label3.Name = "label3";
             label3.Size = new Size(59, 28);
             label3.TabIndex = 12;
@@ -160,11 +140,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1085, 544);
             Controls.Add(label3);
-            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnChangeDish);
             Controls.Add(txtDishPrice);
-            Controls.Add(cmbCategories);
             Controls.Add(txtDishName);
             Controls.Add(lblMenu);
             Controls.Add(lblCategoriesName);
@@ -184,11 +162,9 @@
         private DataGridView dataGridMenu;
         private ListBox listBoxCategories;
         private TextBox txtDishName;
-        private ComboBox cmbCategories;
         private TextBox txtDishPrice;
         private Button btnChangeDish;
         private Label label1;
-        private Label label2;
         private Label label3;
     }
 }

@@ -17,5 +17,9 @@ public partial class Waiter
 
     public string? Description { get; set; }
 
+    public string? Login { get; set; }
+
+    public string? Password { get; set; }
+
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

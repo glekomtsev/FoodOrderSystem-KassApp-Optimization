@@ -31,7 +31,7 @@ namespace CafeAppSql
                     new DataGridViewTextBoxColumn { Name = "DishPrice", HeaderText = "Цена блюда" }
                 );
 
-                cmbCategories.Items.AddRange(context.Categories.Select(c => c.CategoriesName).ToArray());
+                
             }
         }
 
@@ -39,7 +39,6 @@ namespace CafeAppSql
         {
             txtDishName.Clear();
             txtDishPrice.Clear();
-            cmbCategories.Items.Clear();
             listBoxCategories.Items.Clear();
         }
 
@@ -99,8 +98,7 @@ namespace CafeAppSql
                 if (selectedDish != null)
                 {
                     txtDishName.Text = selectedDish.DishName;
-                    txtDishPrice.Text = selectedDish.DishPrice.ToString();
-                    cmbCategories.SelectedItem = listBoxCategories.SelectedItem.ToString();
+                    txtDishPrice.Text = selectedDish.DishPrice.ToString();                    
                 }
             }
         }
@@ -129,25 +127,6 @@ namespace CafeAppSql
                 {
                     MessageBox.Show("Введите корректное значение для цены.");
                     return;
-                }
-
-                if (cmbCategories.SelectedItem != null)
-                {
-                    var categoriesName = cmbCategories.SelectedItem.ToString();
-                    var categoriesId = context.Categories
-                        .Where(c => c.CategoriesName == categoriesName)
-                        .Select(c => c.CategoriesId)
-                        .FirstOrDefault();
-
-                    if (categoriesId != 0)
-                    {
-                        selectedDish.CategoriesId = categoriesId;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Выбранная категория не найдена.");
-                        return;
-                    }
                 }
 
                 DialogResult result = MessageBox.Show("Вы уверены, что хотите сохранить изменения?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
