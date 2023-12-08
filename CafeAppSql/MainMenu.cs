@@ -63,6 +63,10 @@ namespace CafeAppSql
         {
             using (CafeDataBaseContext context = new CafeDataBaseContext())
             {
+
+
+
+
                 lblWaiterName.Text = context.Waiters
                     .Where(e => e.WaiterId == waiterEnterId)
                     .Select(e => e.WaiterLastname + " " + e.WaiterName)
@@ -77,9 +81,14 @@ namespace CafeAppSql
                 if (isAdmin)
                 {
                     lblWaiterPost.Text = "Администратор:";
+
                 }
                 else
+                {
                     lblWaiterPost.Text = "Официант:";
+                    btnOpenDishMenu.Enabled = false;
+                    btnOpenOrderForm.Enabled = false;
+                }
             }
         }
 
@@ -199,8 +208,43 @@ namespace CafeAppSql
             using (CafeDataBaseContext context = new CafeDataBaseContext())
             {
 
+                DialogResult result = MessageBox.Show("Создать новый заказ? ", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+
+                    Order newOrder = new Order
+                    {
+                        WaiterId = waiterEnterId,
+                        OrderTime = DateTime.Now
+                    };
+
+
+                    context.Orders.Add(newOrder);
+
+                    context.SaveChanges();
+
+                    int orderId = newOrder.OrderId;
+
+                    foreach (DataGridViewRow row in dataGridOrder.Rows)
+                    {
+                        int dishId = (int)row.Cells["DishId"].Value;
+                        int quantity = (int)row.Cells["DishCount"].Value;
+
+                        OrderItem orderItem = new OrderItem
+                        {
+                            OrderId = orderId,
+                            DishId = dishId,
+                            Quantity = quantity
+                        };
+
+                        context.OrderItems.Add(orderItem);
+                    }
+
+                    context.SaveChanges();
+                }
             }
         }
+
 
         private void btnDishMenu_Click(object sender, EventArgs e)
         {

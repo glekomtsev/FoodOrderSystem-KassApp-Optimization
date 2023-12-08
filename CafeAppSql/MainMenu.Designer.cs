@@ -41,7 +41,7 @@
             labelTime = new Label();
             btnOpenOrderForm = new Button();
             btnCreateOrder = new Button();
-            btnDishMenu = new Button();
+            btnOpenDishMenu = new Button();
             lblWaiterPost = new Label();
             lblWaiterName = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridMenu).BeginInit();
@@ -201,14 +201,14 @@
             // 
             // btnDishMenu
             // 
-            btnDishMenu.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDishMenu.Location = new Point(492, 34);
-            btnDishMenu.Name = "btnDishMenu";
-            btnDishMenu.Size = new Size(169, 67);
-            btnDishMenu.TabIndex = 6;
-            btnDishMenu.Text = "Меню блюд";
-            btnDishMenu.UseVisualStyleBackColor = true;
-            btnDishMenu.Click += btnDishMenu_Click;
+            btnOpenDishMenu.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnOpenDishMenu.Location = new Point(492, 34);
+            btnOpenDishMenu.Name = "btnDishMenu";
+            btnOpenDishMenu.Size = new Size(169, 67);
+            btnOpenDishMenu.TabIndex = 6;
+            btnOpenDishMenu.Text = "Меню блюд";
+            btnOpenDishMenu.UseVisualStyleBackColor = true;
+            btnOpenDishMenu.Click += btnDishMenu_Click;
             // 
             // lblWaiterPost
             // 
@@ -237,7 +237,7 @@
             ClientSize = new Size(1452, 718);
             Controls.Add(lblWaiterName);
             Controls.Add(lblWaiterPost);
-            Controls.Add(btnDishMenu);
+            Controls.Add(btnOpenDishMenu);
             Controls.Add(btnOpenOrderForm);
             Controls.Add(btnDelOrder);
             Controls.Add(btnCreateOrder);
@@ -274,7 +274,7 @@
         private Label labelTime;
         private Button btnOpenOrderForm;
         private Button btnCreateOrder;
-        private Button btnDishMenu;
+        private Button btnOpenDishMenu;
         private Label lblWaiterPost;
         private Label lblWaiterName;
     }

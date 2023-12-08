@@ -14,4 +14,6 @@ public partial class Dish
     public int CategoriesId { get; set; }
 
     public virtual Category Categories { get; set; } = null!;
+
+    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 }

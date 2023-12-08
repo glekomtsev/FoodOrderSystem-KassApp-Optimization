@@ -82,20 +82,21 @@ public partial class CafeDataBaseContext : DbContext
 
         modelBuilder.Entity<OrderItem>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("order_items");
+            entity.HasKey(e => e.OrderitemsId).HasName("order_items_pkey");
 
+            entity.ToTable("order_items");
+
+            entity.Property(e => e.OrderitemsId).HasColumnName("orderitems_id");
             entity.Property(e => e.DishId).HasColumnName("dish_id");
             entity.Property(e => e.OrderId).HasColumnName("order_id");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
 
-            entity.HasOne(d => d.Dish).WithMany()
+            entity.HasOne(d => d.Dish).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.DishId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("order_items_dish_id_fkey");
 
-            entity.HasOne(d => d.Order).WithMany()
+            entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.OrderId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("order_items_order_id_fkey");

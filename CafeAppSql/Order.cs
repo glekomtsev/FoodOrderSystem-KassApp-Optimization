@@ -11,5 +11,7 @@ public partial class Order
 
     public DateTime OrderTime { get; set; }
 
+    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
     public virtual Waiter Waiter { get; set; } = null!;
 }

@@ -19,30 +19,30 @@ namespace CafeAppSql
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (CafeDataBaseContext context = new CafeDataBaseContext())
+            using (var context = new CafeDataBaseContext())
             {
-                var waiters = context.Waiters;
+                var waiter = context.Waiters
+                    .FirstOrDefault(item => item.Login == txtLogin.Text && item.Password == txtPassword.Text);
 
-                foreach (var item in waiters)
+                if (waiter != null)
                 {
-                    if (item.Login != null && item.Login == txtLogin.Text &&
-                        item.Password != null && item.Password == txtPassword.Text)
-                    {
-                        this.Hide();
-                        new MainMenu(item.WaiterId).ShowDialog();
-                        this.Close();
-                        return;
-                    }                
+                    this.Hide();
+                    new MainMenu(waiter.WaiterId).ShowDialog();
+                    this.Close();
                 }
-
-                DialogResult result = MessageBox.Show("Неверный логин или пароль!", "Подтверждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
+                else
                 {
+                    MessageBox.Show("Неверный логин или пароль!", "Подтверждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtPassword.Clear();
                     txtLogin.Clear();
                 }
-
             }
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
