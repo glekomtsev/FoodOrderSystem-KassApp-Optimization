@@ -170,7 +170,7 @@ namespace CafeAppSql
 
                 if (categoryId != 0)
                 {
-                    var result = MessageBox.Show("При удалении категории будут удалены все блюда в этой категории и связанные заказы. Вы уверены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var result = MessageBox.Show("При удалении категории будут удалены все блюда в этой категории и связанные заказы. Вы уверены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
                         var deletedDishIds = context.Dishes
@@ -199,6 +199,40 @@ namespace CafeAppSql
             }
         }
 
+        private void btnDelDish_Click(object sender, EventArgs e)
+        {
+            if (dataGridMenu.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберете блюдо для удаления.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Warning);            }
+                
+
+            int selectDishId = (int)dataGridMenu.SelectedRows[0].Cells["DishId"].Value;
+
+            using (CafeDataBaseContext context = new CafeDataBaseContext())
+            {
+                var selectedDish = context.Dishes.FirstOrDefault(d => d.DishId == selectDishId);
+
+                if (selectedDish == null)
+                    return;
+
+                var result = MessageBox.Show("При удалении блюда будут удалены также связанные заказы. Вы уверены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    var orderItemsToDelete = context.OrderItems
+                        .Where(oi => oi.DishId == selectDishId)
+                        .ToList();
+
+                    context.OrderItems.RemoveRange(orderItemsToDelete);
+                    context.Dishes.Remove(selectedDish);
+
+                    context.SaveChanges();
+
+                    MessageBox.Show("Удаление успешно произведено.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDataGridDihs();
+                }
+            }
+        }
 
     }
 }

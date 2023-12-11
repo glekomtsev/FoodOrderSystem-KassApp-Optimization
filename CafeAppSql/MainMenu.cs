@@ -239,6 +239,7 @@ namespace CafeAppSql
                         }
 
                         context.SaveChanges();
+                        MessageBox.Show("Заказ успешно создан.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else

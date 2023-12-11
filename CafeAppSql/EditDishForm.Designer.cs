@@ -40,6 +40,7 @@
             btnAddCatagories = new Button();
             btnDelCategories = new Button();
             btnAddDish = new Button();
+            btnDelDish = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridMenu).BeginInit();
             SuspendLayout();
             // 
@@ -70,14 +71,14 @@
             dataGridMenu.AllowUserToResizeColumns = false;
             dataGridMenu.AllowUserToResizeRows = false;
             dataGridMenu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridMenu.Location = new Point(249, 73);
+            dataGridMenu.Location = new Point(249, 69);
             dataGridMenu.Name = "dataGridMenu";
             dataGridMenu.ReadOnly = true;
             dataGridMenu.RowHeadersVisible = false;
             dataGridMenu.RowHeadersWidth = 51;
             dataGridMenu.RowTemplate.Height = 29;
             dataGridMenu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridMenu.Size = new Size(413, 365);
+            dataGridMenu.Size = new Size(413, 456);
             dataGridMenu.TabIndex = 5;
             dataGridMenu.Click += dataGridMenu_Click;
             // 
@@ -94,14 +95,14 @@
             // 
             // txtDishName
             // 
-            txtDishName.Location = new Point(849, 73);
+            txtDishName.Location = new Point(831, 73);
             txtDishName.Name = "txtDishName";
             txtDishName.Size = new Size(214, 27);
             txtDishName.TabIndex = 8;
             // 
             // txtDishPrice
             // 
-            txtDishPrice.Location = new Point(849, 137);
+            txtDishPrice.Location = new Point(831, 137);
             txtDishPrice.Name = "txtDishPrice";
             txtDishPrice.Size = new Size(214, 27);
             txtDishPrice.TabIndex = 10;
@@ -109,7 +110,7 @@
             // btnChangeDish
             // 
             btnChangeDish.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnChangeDish.Location = new Point(711, 200);
+            btnChangeDish.Location = new Point(693, 194);
             btnChangeDish.Name = "btnChangeDish";
             btnChangeDish.Size = new Size(352, 65);
             btnChangeDish.TabIndex = 11;
@@ -121,7 +122,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(711, 69);
+            label1.Location = new Point(693, 69);
             label1.Name = "label1";
             label1.Size = new Size(100, 28);
             label1.TabIndex = 12;
@@ -131,7 +132,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(711, 133);
+            label3.Location = new Point(693, 133);
             label3.Name = "label3";
             label3.Size = new Size(59, 28);
             label3.TabIndex = 12;
@@ -140,7 +141,7 @@
             // btnAddCatagories
             // 
             btnAddCatagories.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddCatagories.Location = new Point(12, 444);
+            btnAddCatagories.Location = new Point(12, 451);
             btnAddCatagories.Name = "btnAddCatagories";
             btnAddCatagories.Size = new Size(205, 74);
             btnAddCatagories.TabIndex = 13;
@@ -151,9 +152,9 @@
             // btnDelCategories
             // 
             btnDelCategories.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDelCategories.Location = new Point(12, 524);
+            btnDelCategories.Location = new Point(13, 543);
             btnDelCategories.Name = "btnDelCategories";
-            btnDelCategories.Size = new Size(204, 72);
+            btnDelCategories.Size = new Size(205, 72);
             btnDelCategories.TabIndex = 14;
             btnDelCategories.Text = "Удалить категорию";
             btnDelCategories.UseVisualStyleBackColor = true;
@@ -162,19 +163,31 @@
             // btnAddDish
             // 
             btnAddDish.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddDish.Location = new Point(250, 444);
+            btnAddDish.Location = new Point(249, 541);
             btnAddDish.Name = "btnAddDish";
-            btnAddDish.Size = new Size(207, 74);
+            btnAddDish.Size = new Size(196, 74);
             btnAddDish.TabIndex = 15;
             btnAddDish.Text = "Добавить блюдо";
             btnAddDish.UseVisualStyleBackColor = true;
             btnAddDish.Click += btnAddDish_Click;
             // 
+            // btnDelDish
+            // 
+            btnDelDish.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDelDish.Location = new Point(463, 541);
+            btnDelDish.Name = "btnDelDish";
+            btnDelDish.Size = new Size(199, 74);
+            btnDelDish.TabIndex = 16;
+            btnDelDish.Text = "Удалить блюдо";
+            btnDelDish.UseVisualStyleBackColor = true;
+            btnDelDish.Click += btnDelDish_Click;
+            // 
             // EditDishForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1085, 609);
+            ClientSize = new Size(1064, 627);
+            Controls.Add(btnDelDish);
             Controls.Add(btnAddDish);
             Controls.Add(btnDelCategories);
             Controls.Add(btnAddCatagories);
@@ -208,5 +221,6 @@
         private Button btnAddCatagories;
         private Button btnDelCategories;
         private Button btnAddDish;
+        private Button btnDelDish;
     }
 }
