@@ -203,8 +203,9 @@ namespace CafeAppSql
         {
             if (dataGridMenu.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Выберете блюдо для удаления.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Warning);            }
-                
+                MessageBox.Show("Выберете блюдо для удаления.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
 
             int selectDishId = (int)dataGridMenu.SelectedRows[0].Cells["DishId"].Value;
 

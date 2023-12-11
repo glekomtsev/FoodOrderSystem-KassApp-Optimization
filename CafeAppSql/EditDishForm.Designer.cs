@@ -110,7 +110,7 @@
             // btnChangeDish
             // 
             btnChangeDish.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnChangeDish.Location = new Point(693, 194);
+            btnChangeDish.Location = new Point(693, 197);
             btnChangeDish.Name = "btnChangeDish";
             btnChangeDish.Size = new Size(352, 65);
             btnChangeDish.TabIndex = 11;

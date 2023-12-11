@@ -44,6 +44,7 @@
             btnOpenDishMenu = new Button();
             lblWaiterPost = new Label();
             lblWaiterName = new Label();
+            btnOpenWaiters = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridMenu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridOrder).BeginInit();
             SuspendLayout();
@@ -128,9 +129,9 @@
             // btnAddOrder
             // 
             btnAddOrder.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddOrder.Location = new Point(701, 277);
+            btnAddOrder.Location = new Point(695, 277);
             btnAddOrder.Name = "btnAddOrder";
-            btnAddOrder.Size = new Size(163, 66);
+            btnAddOrder.Size = new Size(169, 66);
             btnAddOrder.TabIndex = 4;
             btnAddOrder.Text = "Добавить >>>";
             btnAddOrder.UseVisualStyleBackColor = true;
@@ -139,9 +140,9 @@
             // btnDelOrder
             // 
             btnDelOrder.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDelOrder.Location = new Point(701, 349);
+            btnDelOrder.Location = new Point(695, 349);
             btnDelOrder.Name = "btnDelOrder";
-            btnDelOrder.Size = new Size(163, 66);
+            btnDelOrder.Size = new Size(169, 66);
             btnDelOrder.TabIndex = 4;
             btnDelOrder.Text = "<<< Удалить";
             btnDelOrder.UseVisualStyleBackColor = true;
@@ -180,9 +181,9 @@
             // btnOpenOrderForm
             // 
             btnOpenOrderForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnOpenOrderForm.Location = new Point(894, 34);
+            btnOpenOrderForm.Location = new Point(695, 34);
             btnOpenOrderForm.Name = "btnOpenOrderForm";
-            btnOpenOrderForm.Size = new Size(163, 67);
+            btnOpenOrderForm.Size = new Size(169, 67);
             btnOpenOrderForm.TabIndex = 5;
             btnOpenOrderForm.Text = "Меню заказов";
             btnOpenOrderForm.UseVisualStyleBackColor = true;
@@ -199,11 +200,11 @@
             btnCreateOrder.UseVisualStyleBackColor = true;
             btnCreateOrder.Click += btnCreateOrder_Click;
             // 
-            // btnDishMenu
+            // btnOpenDishMenu
             // 
             btnOpenDishMenu.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnOpenDishMenu.Location = new Point(492, 34);
-            btnOpenDishMenu.Name = "btnDishMenu";
+            btnOpenDishMenu.Name = "btnOpenDishMenu";
             btnOpenDishMenu.Size = new Size(169, 67);
             btnOpenDishMenu.TabIndex = 6;
             btnOpenDishMenu.Text = "Меню блюд";
@@ -230,11 +231,23 @@
             lblWaiterName.TabIndex = 8;
             lblWaiterName.Text = "label2";
             // 
+            // btnOpenWaiters
+            // 
+            btnOpenWaiters.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnOpenWaiters.Location = new Point(894, 34);
+            btnOpenWaiters.Name = "btnOpenWaiters";
+            btnOpenWaiters.Size = new Size(169, 67);
+            btnOpenWaiters.TabIndex = 9;
+            btnOpenWaiters.Text = "Меню сотрудников";
+            btnOpenWaiters.UseVisualStyleBackColor = true;
+            btnOpenWaiters.Click += btnOpenWaiters_Click;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1452, 718);
+            Controls.Add(btnOpenWaiters);
             Controls.Add(lblWaiterName);
             Controls.Add(lblWaiterPost);
             Controls.Add(btnOpenDishMenu);
@@ -277,5 +290,6 @@
         private Button btnOpenDishMenu;
         private Label lblWaiterPost;
         private Label lblWaiterName;
+        private Button btnOpenWaiters;
     }
 }

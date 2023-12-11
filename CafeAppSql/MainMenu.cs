@@ -88,6 +88,7 @@ namespace CafeAppSql
                     lblWaiterPost.Text = "Официант:";
                     btnOpenDishMenu.Enabled = false;
                     btnOpenOrderForm.Enabled = false;
+                    btnOpenWaiters.Enabled = false;
                 }
             }
         }
@@ -253,6 +254,11 @@ namespace CafeAppSql
         private void btnDishMenu_Click(object sender, EventArgs e)
         {
             new EditDishForm().ShowDialog();
+        }
+
+        private void btnOpenWaiters_Click(object sender, EventArgs e)
+        {
+            new EditWaitersForm(waiterEnterId).ShowDialog();
         }
     }
 }
