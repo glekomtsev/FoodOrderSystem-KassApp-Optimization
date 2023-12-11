@@ -157,8 +157,34 @@ namespace CafeAppSql
         }
 
         private void btnClearWaiter_Click(object sender, EventArgs e)
-        {            
+        {
             LoadForms();
+        }
+
+        private void btnDelOrder_Click(object sender, EventArgs e)
+        {
+            using (CafeDataBaseContext context = new CafeDataBaseContext())
+            {
+                if (dataGridOrders.CurrentRow != null)
+                {
+                    int orderId = Convert.ToInt32(dataGridOrders.CurrentRow.Cells["OrderId"].Value);
+                    DialogResult result = MessageBox.Show($"Удалить заказ №{orderId}? ", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {                        
+                        var orderItemsToRemove = context.OrderItems.Where(oi => oi.OrderId == orderId);
+
+                        context.OrderItems.RemoveRange(orderItemsToRemove);
+
+                        var orderToRemove = context.Orders.Where(o => o.OrderId == orderId);
+                        context.Orders.RemoveRange(orderToRemove);
+                        context.SaveChanges();
+                        LoadForms();
+                    }
+                }
+                else {
+                    MessageBox.Show($"Выберете заказ ", "Подтверждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
     }
 }

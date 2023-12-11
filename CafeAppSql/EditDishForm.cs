@@ -22,7 +22,7 @@ namespace CafeAppSql
             using (CafeDataBaseContext context = new CafeDataBaseContext())
             {
                 ClearFieldsAndLists();
-
+                listBoxCategories.Items.Clear();
                 listBoxCategories.Items.AddRange(context.Categories.Select(c => c.CategoriesName).ToArray());
 
                 dataGridMenu.Columns.AddRange(
@@ -31,7 +31,7 @@ namespace CafeAppSql
                     new DataGridViewTextBoxColumn { Name = "DishPrice", HeaderText = "Цена блюда" }
                 );
 
-                
+
             }
         }
 
@@ -98,7 +98,7 @@ namespace CafeAppSql
                 if (selectedDish != null)
                 {
                     txtDishName.Text = selectedDish.DishName;
-                    txtDishPrice.Text = selectedDish.DishPrice.ToString();                    
+                    txtDishPrice.Text = selectedDish.DishPrice.ToString();
                 }
             }
         }
@@ -135,9 +135,21 @@ namespace CafeAppSql
                     context.SaveChanges();
                     dataGridMenu.Rows.Clear();
                     LoadDataGridDihs();
+                    MessageBox.Show($"Сохранения успешно сохранены.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
+        private void btnAddCatagories_Click(object sender, EventArgs e)
+        {
+            new AddCategories().ShowDialog();
+            LoadMineMenu();
+        }
+
+        private void btnAddDish_Click(object sender, EventArgs e)
+        {
+            new AddDishForm().ShowDialog();
+            LoadDataGridDihs();
+        }
     }
 }

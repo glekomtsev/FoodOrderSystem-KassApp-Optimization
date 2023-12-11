@@ -37,6 +37,9 @@
             btnChangeDish = new Button();
             label1 = new Label();
             label3 = new Label();
+            btnAddCatagories = new Button();
+            button1 = new Button();
+            btnAddDish = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridMenu).BeginInit();
             SuspendLayout();
             // 
@@ -134,11 +137,46 @@
             label3.TabIndex = 12;
             label3.Text = "Цена";
             // 
+            // btnAddCatagories
+            // 
+            btnAddCatagories.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddCatagories.Location = new Point(12, 444);
+            btnAddCatagories.Name = "btnAddCatagories";
+            btnAddCatagories.Size = new Size(205, 74);
+            btnAddCatagories.TabIndex = 13;
+            btnAddCatagories.Text = "Добавить категорию";
+            btnAddCatagories.UseVisualStyleBackColor = true;
+            btnAddCatagories.Click += btnAddCatagories_Click;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(12, 524);
+            button1.Name = "button1";
+            button1.Size = new Size(204, 72);
+            button1.TabIndex = 14;
+            button1.Text = "Удалить категорию";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // btnAddDish
+            // 
+            btnAddDish.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddDish.Location = new Point(250, 444);
+            btnAddDish.Name = "btnAddDish";
+            btnAddDish.Size = new Size(207, 74);
+            btnAddDish.TabIndex = 15;
+            btnAddDish.Text = "Добавить блюдо";
+            btnAddDish.UseVisualStyleBackColor = true;
+            btnAddDish.Click += btnAddDish_Click;
+            // 
             // EditDishForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1085, 544);
+            ClientSize = new Size(1085, 609);
+            Controls.Add(btnAddDish);
+            Controls.Add(button1);
+            Controls.Add(btnAddCatagories);
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(btnChangeDish);
@@ -166,5 +204,8 @@
         private Button btnChangeDish;
         private Label label1;
         private Label label3;
+        private Button btnAddCatagories;
+        private Button button1;
+        private Button btnAddDish;
     }
 }

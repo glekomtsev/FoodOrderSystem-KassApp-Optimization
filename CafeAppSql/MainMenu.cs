@@ -207,40 +207,43 @@ namespace CafeAppSql
         {
             using (CafeDataBaseContext context = new CafeDataBaseContext())
             {
-
-                DialogResult result = MessageBox.Show("Создать новый заказ? ", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+                if (dataGridOrder.Rows.Count > 0)
                 {
-
-                    Order newOrder = new Order
+                    DialogResult result = MessageBox.Show("Создать новый заказ? ", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
                     {
-                        WaiterId = waiterEnterId,
-                        OrderTime = DateTime.Now
-                    };
-
-
-                    context.Orders.Add(newOrder);
-
-                    context.SaveChanges();
-
-                    int orderId = newOrder.OrderId;
-
-                    foreach (DataGridViewRow row in dataGridOrder.Rows)
-                    {
-                        int dishId = (int)row.Cells["DishId"].Value;
-                        int quantity = (int)row.Cells["DishCount"].Value;
-
-                        OrderItem orderItem = new OrderItem
+                        Order newOrder = new Order
                         {
-                            OrderId = orderId,
-                            DishId = dishId,
-                            Quantity = quantity
+                            WaiterId = waiterEnterId,
+                            OrderTime = DateTime.Now
                         };
 
-                        context.OrderItems.Add(orderItem);
-                    }
+                        context.Orders.Add(newOrder);
+                        context.SaveChanges();
 
-                    context.SaveChanges();
+                        int orderId = newOrder.OrderId;
+
+                        foreach (DataGridViewRow row in dataGridOrder.Rows)
+                        {
+                            int dishId = (int)row.Cells["DishId"].Value;
+                            int quantity = (int)row.Cells["DishCount"].Value;
+
+                            OrderItem orderItem = new OrderItem
+                            {
+                                OrderId = orderId,
+                                DishId = dishId,
+                                Quantity = quantity
+                            };
+
+                            context.OrderItems.Add(orderItem);
+                        }
+
+                        context.SaveChanges();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Невозможно создать заказ. Заказ пустой.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

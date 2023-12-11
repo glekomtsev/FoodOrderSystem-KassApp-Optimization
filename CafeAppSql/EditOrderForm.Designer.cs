@@ -33,6 +33,7 @@
             cmbWaiters = new ComboBox();
             label1 = new Label();
             btnClearWaiter = new Button();
+            btnDelOrder = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridItemsOrder).BeginInit();
             SuspendLayout();
@@ -103,11 +104,23 @@
             btnClearWaiter.UseVisualStyleBackColor = true;
             btnClearWaiter.Click += btnClearWaiter_Click;
             // 
+            // btnDelOrder
+            // 
+            btnDelOrder.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDelOrder.Location = new Point(12, 441);
+            btnDelOrder.Name = "btnDelOrder";
+            btnDelOrder.Size = new Size(238, 60);
+            btnDelOrder.TabIndex = 4;
+            btnDelOrder.Text = "Удалить заказ";
+            btnDelOrder.UseVisualStyleBackColor = true;
+            btnDelOrder.Click += btnDelOrder_Click;
+            // 
             // EditOrderForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1260, 453);
+            ClientSize = new Size(1260, 513);
+            Controls.Add(btnDelOrder);
             Controls.Add(btnClearWaiter);
             Controls.Add(label1);
             Controls.Add(cmbWaiters);
@@ -128,5 +141,6 @@
         private ComboBox cmbWaiters;
         private Label label1;
         private Button btnClearWaiter;
+        private Button btnDelOrder;
     }
 }
