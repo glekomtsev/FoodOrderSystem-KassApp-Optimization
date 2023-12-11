@@ -30,8 +30,7 @@ namespace CafeAppSql
                     new DataGridViewTextBoxColumn { Name = "DishName", HeaderText = "Название блюда", Width = 285 },
                     new DataGridViewTextBoxColumn { Name = "DishPrice", HeaderText = "Цена блюда" }
                 );
-
-
+                dataGridMenu.Rows.Clear();
             }
         }
 
@@ -151,5 +150,55 @@ namespace CafeAppSql
             new AddDishForm().ShowDialog();
             LoadDataGridDihs();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string selectedCategoryName = listBoxCategories.SelectedItem?.ToString();
+
+            using (CafeDataBaseContext context = new CafeDataBaseContext())
+            {
+                if (string.IsNullOrEmpty(selectedCategoryName))
+                {
+                    MessageBox.Show("Выберите категорию для удаления.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int categoryId = context.Categories
+                    .Where(c => c.CategoriesName == selectedCategoryName)
+                    .Select(c => c.CategoriesId)
+                    .FirstOrDefault();
+
+                if (categoryId != 0)
+                {
+                    var result = MessageBox.Show("При удалении категории будут удалены все блюда в этой категории и связанные заказы. Вы уверены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        var deletedDishIds = context.Dishes
+                            .Where(d => d.CategoriesId == categoryId)
+                            .Select(d => d.DishId)
+                            .ToList();
+
+                        var orderItemsToDelete = context.OrderItems
+                            .Where(oi => deletedDishIds.Contains(oi.DishId))
+                            .ToList();
+
+                        context.OrderItems.RemoveRange(orderItemsToDelete);
+
+                        context.Dishes.RemoveRange(context.Dishes.Where(d => d.CategoriesId == categoryId));
+
+                        context.Categories.Remove(context.Categories.Find(categoryId));
+
+                        context.SaveChanges();
+
+                        MessageBox.Show("Удаление успешно произведено.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadMineMenu();
+
+
+                    }
+                }
+            }
+        }
+
+
     }
 }

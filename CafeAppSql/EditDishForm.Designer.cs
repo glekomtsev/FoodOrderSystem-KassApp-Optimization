@@ -38,7 +38,7 @@
             label1 = new Label();
             label3 = new Label();
             btnAddCatagories = new Button();
-            button1 = new Button();
+            btnDelCategories = new Button();
             btnAddDish = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridMenu).BeginInit();
             SuspendLayout();
@@ -148,15 +148,16 @@
             btnAddCatagories.UseVisualStyleBackColor = true;
             btnAddCatagories.Click += btnAddCatagories_Click;
             // 
-            // button1
+            // btnDelCategories
             // 
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(12, 524);
-            button1.Name = "button1";
-            button1.Size = new Size(204, 72);
-            button1.TabIndex = 14;
-            button1.Text = "Удалить категорию";
-            button1.UseVisualStyleBackColor = true;
+            btnDelCategories.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDelCategories.Location = new Point(12, 524);
+            btnDelCategories.Name = "btnDelCategories";
+            btnDelCategories.Size = new Size(204, 72);
+            btnDelCategories.TabIndex = 14;
+            btnDelCategories.Text = "Удалить категорию";
+            btnDelCategories.UseVisualStyleBackColor = true;
+            btnDelCategories.Click += button1_Click;
             // 
             // btnAddDish
             // 
@@ -175,7 +176,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1085, 609);
             Controls.Add(btnAddDish);
-            Controls.Add(button1);
+            Controls.Add(btnDelCategories);
             Controls.Add(btnAddCatagories);
             Controls.Add(label3);
             Controls.Add(label1);
@@ -205,7 +206,7 @@
         private Label label1;
         private Label label3;
         private Button btnAddCatagories;
-        private Button button1;
+        private Button btnDelCategories;
         private Button btnAddDish;
     }
 }
