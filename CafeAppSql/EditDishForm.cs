@@ -102,6 +102,7 @@ namespace CafeAppSql
             }
         }
 
+        //Метод изменения значений блюда 
         private void btnChangeDish_Click(object sender, EventArgs e)
         {
             if (dataGridMenu.SelectedRows.Count == 0)
@@ -151,7 +152,8 @@ namespace CafeAppSql
             LoadDataGridDihs();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        //Удаление категории из БД
+        private void btnDelCategories_Click(object sender, EventArgs e)
         {
             string selectedCategoryName = listBoxCategories.SelectedItem?.ToString();
 
@@ -162,7 +164,6 @@ namespace CafeAppSql
                     MessageBox.Show("Выберите категорию для удаления.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
                 int categoryId = context.Categories
                     .Where(c => c.CategoriesName == selectedCategoryName)
                     .Select(c => c.CategoriesId)
@@ -181,31 +182,28 @@ namespace CafeAppSql
                         var orderItemsToDelete = context.OrderItems
                             .Where(oi => deletedDishIds.Contains(oi.DishId))
                             .ToList();
-
+                        //Удаление из OrderItems
                         context.OrderItems.RemoveRange(orderItemsToDelete);
-
+                        //Удаление из Dishes
                         context.Dishes.RemoveRange(context.Dishes.Where(d => d.CategoriesId == categoryId));
-
+                        //Удаление из Categories
                         context.Categories.Remove(context.Categories.Find(categoryId));
-
                         context.SaveChanges();
 
                         MessageBox.Show("Удаление успешно произведено.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadMineMenu();
-
-
                     }
                 }
             }
         }
 
+        //Удаление блюда из БД
         private void btnDelDish_Click(object sender, EventArgs e)
         {
             if (dataGridMenu.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Выберете блюдо для удаления.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
 
             int selectDishId = (int)dataGridMenu.SelectedRows[0].Cells["DishId"].Value;
 
@@ -216,7 +214,7 @@ namespace CafeAppSql
                 if (selectedDish == null)
                     return;
 
-                var result = MessageBox.Show("При удалении блюда будут удалены также связанные заказы. Вы уверены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                var result = MessageBox.Show("При удалении блюда будут они будут удалены из заказов. Вы уверены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Yes)
                 {
@@ -224,7 +222,9 @@ namespace CafeAppSql
                         .Where(oi => oi.DishId == selectDishId)
                         .ToList();
 
+                    //Удаление из OrderItems
                     context.OrderItems.RemoveRange(orderItemsToDelete);
+                    //Удаление из Dishes
                     context.Dishes.Remove(selectedDish);
 
                     context.SaveChanges();

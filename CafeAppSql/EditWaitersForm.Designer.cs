@@ -36,14 +36,14 @@
             txtWaiterName = new TextBox();
             txtWaiterPatronymic = new TextBox();
             label4 = new Label();
-            comboBox1 = new ComboBox();
+            cmbBoxPost = new ComboBox();
             label5 = new Label();
             label6 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtLogin = new TextBox();
+            txtPassword = new TextBox();
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
+            btnSaveChange = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridWaiters).BeginInit();
             SuspendLayout();
             // 
@@ -64,6 +64,7 @@
             dataGridWaiters.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridWaiters.Size = new Size(604, 341);
             dataGridWaiters.TabIndex = 0;
+            dataGridWaiters.Click += dataGridWaiters_Click;
             // 
             // label1
             // 
@@ -126,14 +127,14 @@
             label4.TabIndex = 1;
             label4.Text = "Должность";
             // 
-            // comboBox1
+            // cmbBoxPost
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(763, 196);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(292, 28);
-            comboBox1.TabIndex = 3;
+            cmbBoxPost.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBoxPost.FormattingEnabled = true;
+            cmbBoxPost.Location = new Point(763, 196);
+            cmbBoxPost.Name = "cmbBoxPost";
+            cmbBoxPost.Size = new Size(292, 28);
+            cmbBoxPost.TabIndex = 3;
             // 
             // label5
             // 
@@ -155,19 +156,19 @@
             label6.TabIndex = 1;
             label6.Text = "Пароль";
             // 
-            // textBox1
+            // txtLogin
             // 
-            textBox1.Location = new Point(763, 253);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(292, 27);
-            textBox1.TabIndex = 2;
+            txtLogin.Location = new Point(763, 253);
+            txtLogin.Name = "txtLogin";
+            txtLogin.Size = new Size(292, 27);
+            txtLogin.TabIndex = 2;
             // 
-            // textBox2
+            // txtPassword
             // 
-            textBox2.Location = new Point(763, 312);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(292, 27);
-            textBox2.TabIndex = 2;
+            txtPassword.Location = new Point(763, 312);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(292, 27);
+            txtPassword.TabIndex = 2;
             // 
             // button1
             // 
@@ -178,6 +179,7 @@
             button1.TabIndex = 4;
             button1.Text = "Добавить сотрудника";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -188,30 +190,32 @@
             button2.TabIndex = 4;
             button2.Text = "Удалить сотрудника";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
-            // button3
+            // btnSaveChange
             // 
-            button3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(854, 365);
-            button3.Name = "button3";
-            button3.Size = new Size(201, 77);
-            button3.TabIndex = 4;
-            button3.Text = "Сохранить изменения";
-            button3.UseVisualStyleBackColor = true;
+            btnSaveChange.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSaveChange.Location = new Point(854, 365);
+            btnSaveChange.Name = "btnSaveChange";
+            btnSaveChange.Size = new Size(201, 77);
+            btnSaveChange.TabIndex = 4;
+            btnSaveChange.Text = "Сохранить изменения";
+            btnSaveChange.UseVisualStyleBackColor = true;
+            btnSaveChange.Click += btnSaveChange_Click;
             // 
             // EditWaitersForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 454);
-            Controls.Add(button3);
+            Controls.Add(btnSaveChange);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(comboBox1);
+            Controls.Add(cmbBoxPost);
             Controls.Add(txtWaiterPatronymic);
             Controls.Add(txtWaiterName);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtPassword);
+            Controls.Add(txtLogin);
             Controls.Add(txtWaiterLastname);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -237,13 +241,13 @@
         private TextBox txtWaiterName;
         private TextBox txtWaiterPatronymic;
         private Label label4;
-        private ComboBox comboBox1;
+        private ComboBox cmbBoxPost;
         private Label label5;
         private Label label6;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtLogin;
+        private TextBox txtPassword;
         private Button button1;
         private Button button2;
-        private Button button3;
+        private Button btnSaveChange;
     }
 }

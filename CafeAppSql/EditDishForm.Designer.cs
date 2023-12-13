@@ -158,7 +158,7 @@
             btnDelCategories.TabIndex = 14;
             btnDelCategories.Text = "Удалить категорию";
             btnDelCategories.UseVisualStyleBackColor = true;
-            btnDelCategories.Click += button1_Click;
+            btnDelCategories.Click += btnDelCategories_Click;
             // 
             // btnAddDish
             // 

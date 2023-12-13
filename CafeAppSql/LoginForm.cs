@@ -34,7 +34,6 @@ namespace CafeAppSql
                 {
                     MessageBox.Show("Неверный логин или пароль!", "Подтверждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtPassword.Clear();
-                    txtLogin.Clear();
                 }
             }
         }

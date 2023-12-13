@@ -92,7 +92,7 @@ namespace CafeAppSql
                 }
             }
         }
-
+        //Загрузка блюд из выбраной категории блюд
         private void listBoxCategories_Click(object sender, EventArgs e)
         {
             string selectedCategoryName = listBoxCategories.SelectedItem?.ToString();

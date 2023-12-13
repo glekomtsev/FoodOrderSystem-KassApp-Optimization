@@ -30,11 +30,12 @@ namespace CafeAppSql
             }
         }
 
+        //Метод добавляет новое блюдо со значениями из заполненых полей
         private void btnAddDish_Click(object sender, EventArgs e)
-        {
+        { 
             using (CafeDataBaseContext context = new CafeDataBaseContext())
             {
-                string dishName = txtDishName.Text.Trim();
+                string dishName = txtDishName.Text;
                 decimal dishPrice;
                 
                 if (!decimal.TryParse(txtDishPrice.Text, out dishPrice))

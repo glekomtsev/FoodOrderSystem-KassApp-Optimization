@@ -106,55 +106,59 @@ namespace CafeAppSql
                 }
             }
         }
-
+        //Фильтрация заказов по сотрудникам
         private void cmbWaiters_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataGridOrders.Rows.Clear();
             dataGridItemsOrder.Rows.Clear();
 
-            string selectedValue = cmbWaiters.SelectedItem.ToString();
+            string selectedValue = cmbWaiters.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(selectedValue))
+                return;
+
             string[] parts = selectedValue.Split(' ');
+            if (parts.Length < 2)
+                return;
+
             string firstName = parts[0];
             string lastName = parts[1];
 
             using (CafeDataBaseContext context = new CafeDataBaseContext())
             {
-                var waiters = context.Waiters
-                    .Where(e => e.WaiterName == firstName && e.WaiterLastname == lastName)
-                    .Select(e => e.WaiterId)
+                var waiterId = context.Waiters
+                    .Where(w => w.WaiterName == firstName && w.WaiterLastname == lastName)
+                    .Select(w => w.WaiterId)
                     .FirstOrDefault();
 
-                using (var transaction = context.Database.BeginTransaction())
+                if (waiterId == 0)
+                    return;
+
+                var orders = context.Orders
+                    .Where(o => o.WaiterId == waiterId)
+                    .OrderByDescending(o => o.OrderTime)
+                    .ToList();
+
+                foreach (var order in orders)
                 {
-                    var orders = context.Orders
-                        .Where(e => e.WaiterId == waiters)
-                        .OrderByDescending(e => e.OrderTime)
-                        .ToList();
+                    string waitersName = context.Waiters
+                        .Where(w => w.WaiterId == order.WaiterId)
+                        .Select(w => $"{w.WaiterName} {w.WaiterLastname}")
+                        .FirstOrDefault();
 
-                    foreach (var order in orders)
-                    {
-                        string waitersName = context.Waiters
-                            .Where(e => e.WaiterId == order.WaiterId)
-                            .Select(e => e.WaiterName + " " + e.WaiterLastname)
-                            .FirstOrDefault();
+                    decimal totalPrice = context.OrderItems
+                        .Where(oi => oi.OrderId == order.OrderId)
+                        .Sum(oi => oi.Quantity * context.Dishes
+                            .Where(d => d.DishId == oi.DishId)
+                            .Select(d => d.DishPrice)
+                            .FirstOrDefault());
 
-                        decimal totalPrice = context.OrderItems
-                            .Where(e => e.OrderId == order.OrderId)
-                            .Select(e => e.Quantity * context.Dishes
-                                .Where(x => x.DishId == e.DishId)
-                                .Select(p => p.DishPrice)
-                                .FirstOrDefault())
-                            .Sum();
+                    totalPrice = Math.Round(totalPrice, 2);
 
-                        totalPrice = Math.Round(totalPrice, 2);
-
-                        dataGridOrders.Rows.Add(order.OrderId, waitersName, order.OrderTime, totalPrice);
-                    }
-
-                    transaction.Commit();
+                    dataGridOrders.Rows.Add(order.OrderId, waitersName, order.OrderTime, totalPrice);
                 }
             }
         }
+
 
         private void btnClearWaiter_Click(object sender, EventArgs e)
         {
